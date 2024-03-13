@@ -1,0 +1,13 @@
+export interface IPost {
+  categoryID: string;
+  blogID: string;
+  title: string;
+  content: string;
+  authorID: string;
+  summary?: string;
+  statusPost?: string;
+  updatedAt?: Date;
+  deletedAt?: Date;
+  publishedAt?: Date;
+  comments?: string[];
+}

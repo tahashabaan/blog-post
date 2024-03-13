@@ -1,0 +1,61 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Blog Post API",
+    "description": "Create A Blog Post API ",
+    "version": "1.0.0",
+    "contact": {
+      "name": "taha shabaan",
+      "email": "tahashabaan48@gmail.com",
+      "url": "web.com"
+    }
+  },
+  "host": "localhost",
+  "basepath": "/",
+  "tags":[
+     {
+       "name":"blog-post",
+       "description":"API"
+     }
+  ],
+  "schemas": ["http", "https"],
+  "consumes":["application/json"],
+  "produces":["application/json"],
+  "paths": {
+
+
+    "/posts": {
+      "get": {
+        "description": "{}",
+        "responses": {
+         "200":{
+            "description":"{}",
+            "content":{
+               "description":"{}",
+               "application/json":{
+                  "schema":{
+                    "type":"",
+                    proper
+                  }
+               }
+               
+            },
+            "post":{
+              "description":"{}",
+              "responses":{
+                "201":{
+                  "description":"{}",
+                  "content":{
+
+                  }
+                }
+              }
+            }
+
+
+         }   description, content => contentType => schema => type, items => type, properities => data about path
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Simple Todos API",
+    "description": "A simple todos API",
+    "version": "1.0.0",
+    "contact": {
+      "name": "taha shabaan",
+      "email": "tahashabaan48@gmail.com",
+      "url": "web.com"
+    }
+  },
+"h":"localhost"
+  "paths": {
+    "/posts": {
+      "get": {
+        "description": {},
+        "responses": {
+          //statusCode => , description, content => contentType => schema => type, items => type, properities => data about path
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "openapi": "3.0.3", 
+  "info": {
+    "title": "Simple Todos API", 
+    "description": "A simple todos API", 
+    "version": "1.0.0", 
+    "contact": {
+      "name": "John doe", 
+      "email": "john@web.com", 
+      "url": "web.com" 
+    }
+  },
+  "path":{
+    paths:
+    /users:
+      get:
+        summary: Get all users
+        responses:
+          '200':
+            description: OK
+            content:
+              application/json:
+                schema:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/User'
+    /users/{id}:
+      get:
+        summary: Get a single user by ID
+        parameters:
+          - name: id
+            in: path
+            required: true
+            schema:
+              type: integer
+        responses:
+          '200':
+            description: OK
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/User'
+  }
+  
+}

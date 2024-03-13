@@ -1,0 +1,835 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Blog Post API",
+    "description": "Create A Blog Post API ",
+    "version": "1.0.0",
+    "contact": {
+      "name": "taha shabaan",
+      "email": "tahashabaan48@gmail.com",
+      "url": "web.com"
+    }
+  },
+  "host": "localhost",
+  "basepath": "/api/v1",
+  "tags": [
+    {
+      "name": "blog-post",
+      "description": "API"
+    }
+  ],
+  "schemas": ["http", "https"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "paths": {
+    "/register": {
+      "post": {
+        "description": "register a new user",
+        "responses": {
+          "201": {
+            "description": "sucess create a new user",
+            "content": {
+              "description": "create a new user",
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/definations/user"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/login": {
+      "post": {
+        "description": "authenticate user in app",
+        "parameters": [
+          {
+            "name": "email",
+            "in": "query",
+            "description": "email of user",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "password",
+            "in": "query",
+            "description": "password of user",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "description": "API",
+          "200": {
+            "description": "authenticate user in app",
+            "application/json": {
+              "content": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/definations/user"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/posts": {
+      "get": {
+        "description": "{}",
+        "responses": {
+          "200": {
+            "description": "{}",
+            "content": {
+              "description": "{}",
+              "application/json": {
+                "schema": {
+                  "type": "",
+                  "properties": {},
+                  "$ref": "#/definations/post"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "{}",
+        "responses": {
+          "201": {
+            "description": "{}",
+            "content": {
+              "description": "{}",
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/definations/post"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "/post/{id}": {
+      "description": "get post by id",
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "description": "id of post",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "get": {
+        "description": "get post by id",
+        "responses": {
+          "200": {
+            "description": "status code",
+            "content": {
+              "description": "result of the request",
+              "application/json": {
+                "schema": {
+                  "type": "",
+                  "properties": {},
+                  "$ref": "#/definations/post"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "description": "update post by id",
+        "responses": {
+          "200": {
+            "description": "status code",
+            "content": {
+              "description": "result of the request",
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/definations/post"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "delete post by id",
+        "responses": {
+          "200": {
+            "description": "status code",
+            "content": {
+              "description": "result of the request",
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/definations/post"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "/users": {
+      "get": {
+        "description": "get all  users",
+        "responses": {
+          "200": {
+            "description": "status code",
+            "content": {
+              "description": "result of the request",
+              "application/json": {
+                "schema": {
+                  "type": "",
+                  "properties": {},
+                  "$ref": "#/definations/user"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "/user/{id}": {
+      "get": {
+        "description": "get user by id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id of user",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "status code",
+            "content": {
+              "description": "result of the request",
+              "application/json": {
+                "schema": {
+                  "type": "",
+                  "properties": {},
+                  "$ref": "#/definations/user"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "description": "update user by id",
+        "responses": {
+          "200": {
+            "description": "status code",
+            "content": {
+              "description": "result of the request",
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/definations/user"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "delete user by id",
+        "responses": {
+          "200": {
+            "description": "status code",
+            "content": {
+              "description": "result of the request",
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/definations/user"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/category": {
+      "get": {
+        "description": "get all categories",
+        "responses": {
+          "200": {
+            "description": "status code",
+            "content": {
+              "description": "result of the request",
+              "application/json": {
+                "schema": {
+                  "type": "",
+                  "properties": {},
+                  "$ref": "#/definations/category"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "create a new category",
+        "responses": {
+          "201": {
+            "description": "status code",
+            "content": {
+              "description": "result of the request",
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/definations/category"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/category/{id}": {
+      "get": {
+        "description": "get category by id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id of category",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "status code",
+            "content": {
+              "description": "result of the request",
+              "application/json": {
+                "schema": {
+                  "type": "",
+                  "properties": {},
+                  "$ref": "#/definations/category"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "description": "update category by id",
+        "responses": {
+          "200": {
+            "description": "status code",
+            "content": {
+              "description": "result of the request",
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/definations/category"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "delete category by id",
+        "responses": {
+          "200": {
+            "description": "status code",
+            "content": {
+              "description": "result of the request",
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/definations/category"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/blog": {
+      "get": {
+        "description": "get all blogs",
+        "responses": {
+          "200": {
+            "description": "status code",
+            "content": {
+              "description": "result of the request",
+              "application/json": {
+                "schema": {
+                  "type": "",
+                  "properties": {},
+                  "$ref": "#/definations/blog"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "create a new blog",
+        "responses": {
+          "201": {
+            "description": "status code",
+            "content": {
+              "description": "result of the request",
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/definations/blog"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/blog/{id}": {
+      "get": {
+        "description": "get blog by id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id of blog",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "status code",
+            "content": {
+              "description": "result of the request",
+              "application/json": {
+                "schema": {
+                  "type": "",
+                  "properties": {},
+                  "$ref": "#/definations/blog"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "description": "update blog by id",
+        "responses": {
+          "200": {
+            "description": "status code",
+            "content": {
+              "description": "result of the request",
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/definations/blog"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "delete blog by id",
+        "responses": {
+          "200": {
+            "description": "status code",
+            "content": {
+              "description": "result of the request",
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/definations/blog"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "/tag": {
+      "get": {
+        "description": "get all tags",
+        "responses": {
+          "200": {
+            "description": "status code",
+            "content": {
+              "description": "result of the request",
+              "application/json": {
+                "schema": {
+                  "type": "",
+                  "properties": {},
+                  "$ref": "#/definations/tag"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "create a new tag",
+        "responses": {
+          "201": {
+            "description": "status code",
+            "content": {
+              "description": "result of the request",
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/definations/tag"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "/tag/{id}": {
+      "get": {
+        "description": "get tag by id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id of tag",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "status code",
+            "content": {
+              "description": "result of the request",
+              "application/json": {
+                "schema": {
+                  "type": "",
+                  "properties": {},
+                  "$ref": "#/definations/tag"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "description": "update tag by id",
+        "responses": {
+          "200": {
+            "description": "status code",
+            "content": {
+              "description": "result of the request",
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/definations/tag"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "delete tag by id",
+        "responses": {
+          "200": {
+            "description": "status code",
+            "content": {
+              "description": "result of the request",
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/definations/tag"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/comment": {
+      "get": {
+        "description": "get all comments",
+        "responses": {
+          "200": {
+            "description": "status code",
+            "content": {
+              "description": "result of the request",
+              "application/json": {
+                "schema": {
+                  "type": "",
+                  "properties": {},
+                  "$ref": "#/definations/comment"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "create a new comment",
+        "responses": {
+          "201": {
+            "description": "status code",
+            "content": {
+              "description": "result of the request",
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/definations/comment"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/comment/{id}": {
+      "get": {
+        "description": "get comment by id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id of comment",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "status code",
+            "content": {
+              "description": "result of the request",
+              "application/json": {
+                "schema": {
+                  "type": "",
+                  "properties": {},
+                  "$ref": "#/definations/comment"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "description": "update comment by id",
+        "responses": {
+          "200": {
+            "description": "status code",
+            "content": {
+              "description": "result of the request",
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/definations/comment"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "delete comment by id",
+        "responses": {
+          "200": {
+            "description": "status code",
+            "content": {
+              "description": "result of the request",
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/definations/comment"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+
+  "definations": {
+    "post": {
+      "required": {},
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "content": {
+          "type": "string"
+        },
+        "summary": {
+          "type": "string"
+        },
+        "authorID": {
+          "type": "string"
+        },
+        "statusPost": {
+          "type": "string"
+        },
+        "categoryID": {
+          "type": "string"
+        },
+        "blogID": {
+          "type": "string"
+        },
+        "comments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definations/comment"
+          }
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "user": {
+      "required": {},
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "role": {
+          "type": "string"
+        },
+        "profilePicture": {
+          "type": "string"
+        },
+        "posts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definations/post"
+          },
+          "comments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definations/comment"
+            }
+          },
+          "googleId": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "comment": {
+      "required": {},
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "authorID": {
+          "type": "string"
+        },
+        "postID": {
+          "type": "string"
+        },
+        "statusComment": {
+          "type": "string"
+        }
+      }
+    },
+    "category": {
+      "required": {},
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
+      }
+    },
+    "blog": {
+      "required": {},
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "categories": {
+          "type": "array",
+          "item": {
+            "$ref": "#/definations/category"
+          }
+        }
+      }
+    },
+    "tag": {
+      "required": {},
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

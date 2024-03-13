@@ -1,0 +1,22 @@
+const sql = require("tedious");
+
+import { DB_HOST, DB_PORT, DB_DATABASE } from "Config";
+
+const config = {
+  server: "your-server-name", // Your SQL Server's host name
+  database: import { DB_HOST, DB_PORT, DB_DATABASE } from "Config";
+  , // Your database name
+  user: "your-username", // Your SQL Server login username
+  password: "your-password", // Your SQL Server login password
+  options: {
+    encrypt: true, // Use if you have SSL enabled
+  },
+};
+
+sql.connect(config, (err) => {
+  if (err) {
+    console.error("Error connecting to SQL Server:", err);
+  } else {
+    console.log("Connected to SQL Server");
+  }
+});
