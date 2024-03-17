@@ -1,0 +1,29 @@
+<%- include('../includes/head.ejs')%>
+<link rel="stylesheet" href="/css/profile.css" />
+</head>
+<body>
+<div class="container">
+
+
+  <%- include('../includes/header.ejs') %>
+   <% -include('../includes/showMesg.ejs') %>
+  <main class="profile_main">
+    <nav class="nav">
+        <%- include('../includes/list.ejs') %>
+    </nav>
+    <aside>
+      <h3>Profile</h3>
+       <img 
+          src="/images/profile.png" 
+          alt="Profile Picture" 
+          class="profile-pic" />
+        <div class="pers__info">
+          <h5>Personal Information</h5>
+          <p><strong>Name:<%= name %></strong> </p>
+          <p><strong>Email:<%= email %></strong> </p>
+        </div>
+    </aside>
+  </main>
+</div>
+<%- include('../includes/end.ejs')%>
+

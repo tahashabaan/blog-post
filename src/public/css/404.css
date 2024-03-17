@@ -1,0 +1,15 @@
+.content {
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 40px;
+  height: auto;
+  width: 40%;
+  background-color: #f5f5f5;
+  border-radius: 30px;
+  border: 3px dashed rgb(224, 44, 44);
+  margin-top: 6em;
+  padding: 0.9em 0.5em;
+}

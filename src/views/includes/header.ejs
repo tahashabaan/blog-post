@@ -1,0 +1,13 @@
+<header>
+  <h1 class="head_app"><a href="/">Auth App</a></h1>
+  <nav>
+    <ul>
+      <% if(!isLoggedIn) {%>
+      <li><a href="/task2/signin">Sign In</a></li>
+      <li><a href="/task2/signup">Sign Up</a></li>
+      <% } else { %>
+      <li><a href="/task2/logout">Log Out</a></li>
+      <% } %>
+    </ul>
+  </nav>
+</header>

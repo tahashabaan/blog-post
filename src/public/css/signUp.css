@@ -1,0 +1,72 @@
+body {
+}
+
+main {
+  width: 60%;
+  height: auto;
+  margin: 0 auto;
+  background-color: var(--secondary);
+  border-radius: 10px;
+  padding: 22px 20px;
+  margin-top: 3em;
+}
+
+main h1 {
+  text-align: center;
+  font-style: oblique;
+  font-size: 32px;
+  margin-bottom: 0.4em;
+}
+
+main form {
+  width: 70%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+.form-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* // flex-direction: column; */
+}
+.form-group input {
+  flex-basis: 81%;
+  padding: 0.6em 0.3em;
+  border-radius: 40px;
+  outline: none;
+  font-size: 16px;
+  border: 2px solid var(--primary);
+  transition: 500ms;
+}
+
+.form-group input:focus,
+.form-group input:hover {
+  padding: 0.6em 0.4em;
+  font-weight: bold;
+  background-color: var(--secondary);
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.error input:focus,
+.error input:hover {
+  /* padding: 0.6em 0.4em;
+  font-weight: bold; */
+  background-color: var(--dank);
+  border-color: var(--dank-bd);
+  /* // color: rgba(0, 0, 0, 0.8); */
+}
+
+form button {
+  width: fit-content;
+  padding: 0.4em 0.5em;
+  border-radius: 40px;
+  margin: 0 auto;
+  cursor: pointer;
+  font-size: 20px;
+  color: rgba(255, 255, 255, 0.8);
+  background-color: var(--secondary);
+  border: 2px solid var(--primary);
+}

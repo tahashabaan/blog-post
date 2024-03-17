@@ -1,0 +1,31 @@
+<%- include('../includes/head.ejs') %> 
+<link rel="stylesheet" href="/css/signUp.css"/>
+</head>
+<body>
+<div class="container">
+
+  <%- include('../includes/header.ejs') %>
+  <%- include('../includes/showMesg.ejs')%>
+  <main>
+  <h1>Sign In</h1>
+  <form action="/task2/signIn" method="post">
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="text" id="email" name="email" class="form-control" />
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input
+        type="password"
+        id="password"
+        name="password"
+        class="form-control"
+      />
+    </div>
+    <button type="submit" class="btn btn-primary">Sign In</button>
+  </form>
+  <a href="/task2/signup">Sign Up</a>
+</main>
+</div>
+
+<% -include('../includes/end.ejs') %>

@@ -1,0 +1,11 @@
+<% if(hasErrMesg) { %>
+<div class="alert alert-danger" role="alert">
+  <strong>Error!</strong> <%= errMesg %>
+</div>
+<% } else if(hasSucMesg) { %>
+<div class="alert alert-success" role="alert">
+  <strong>Success!</strong> <%= sucessMesg %>
+</div>
+<% } else { %>
+<div class="alert alert-null" role="alert"></div>
+<% } %>

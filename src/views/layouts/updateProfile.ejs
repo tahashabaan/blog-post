@@ -1,0 +1,37 @@
+
+<%- include('../includes/end.ejs')%>
+
+
+<%- include('../includes/head.ejs')%>
+<link rel="stylesheet" href="/css/profile.css" />
+<link rel="stylesheet" href="/css/signUp.css" />
+</head>
+<body>
+<div class="container">
+
+
+  <%- include('../includes/header.ejs') %>
+
+  <main class="profile_main">
+    <nav class="nav">
+        <%- include('../includes/list.ejs') %>
+    </nav>
+    <aside>
+      <form action="/task2/updateProfile" method="POST" class="form">
+         <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" />
+           </div>
+           <div class="form-group">
+             <label for="email">Email</label>
+             <input type="email" id="email" name="email" />
+           </div>
+          <div class="action" style="margin:1.2em auto;">
+             <button type="submit">Update</button>
+          </div>
+       </form>
+    </aside>
+  </main>
+</div>
+<%- include('../includes/end.ejs')%>
+

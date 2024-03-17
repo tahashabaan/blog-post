@@ -1,0 +1,27 @@
+
+<%- include('../includes/end.ejs')%>
+
+
+<%- include('../includes/head.ejs')%>
+<link rel="stylesheet" href="/css/profile.css" />
+<link rel="stylesheet" href="/css/signUp.css" />
+</head>
+<body>
+<div class="container">
+
+
+  <%- include('../includes/header.ejs') %>
+
+  <main class="profile_main">
+    <nav class="nav">
+        <%- include('../includes/list.ejs') %>
+    </nav>
+    <aside>
+      <form method="POST" action="/task2/deleteProfile">
+        <button type="submit">Delete</button>
+    </form>
+    </aside>
+  </main>
+</div>
+<%- include('../includes/end.ejs')%>
+
