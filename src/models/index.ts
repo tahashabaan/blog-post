@@ -1,8 +1,8 @@
-import Blog from "./blog";
+import Blogging from "./blog";
 import Post from "./post";
-import User from "./user.entity";
+import User from "./user";
 import Comment from "./comment";
 import Category from "./category";
 import Tag from "./tag";
 
-export { Blog, Post, User, Comment, Category, Tag };
+export { Blogging, Post, User, Comment, Category, Tag };

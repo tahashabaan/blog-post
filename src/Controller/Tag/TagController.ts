@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 
 import queryRepository from "@/Repositery/queryRepository";
-import { ITag } from "@/Interface/Post/ITag";
+import { ITag } from "@/Interface/ITag";
 import ApiError from "@/Utils/ApiError";
 
 export default class TagController {

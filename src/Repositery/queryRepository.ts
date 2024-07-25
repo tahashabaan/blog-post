@@ -1,3 +1,5 @@
+
+
 export default class queryRepository<T> {
   constructor(private model) {}
 

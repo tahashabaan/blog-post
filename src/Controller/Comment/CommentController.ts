@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import ApiError from "@/Utils/ApiError";
-import { IComment } from "@/Interface/Comment/IComment";
+import { IComment } from "@/Interface/IComment";
 import queryRepository from "@/Repositery/queryRepository";
 
 export default class CommentController {

@@ -1,19 +1,6 @@
 import { Schema, model, Document } from "mongoose";
 
-interface IPost extends Document {
-  categoryID: string;
-  blogID: string;
-  title: string;
-  content: string;
-  authorID: string;
-  summary?: string;
-  statusPost?: string;
-  updatedAt?: Date;
-  deletedAt?: Date;
-  publishedAt?: Date;
-  comments?: string[];
-  tags?: string[];
-}
+import { IPost } from "@/Interface";
 
 const PostSchema = new Schema<IPost>(
   {
@@ -28,10 +15,13 @@ const PostSchema = new Schema<IPost>(
       enum: ["pending", "sending", "rehected", "published"],
       default: "pending",
     },
-    categoryID: { type: String, required: true, ref: "Category" },
-    blogID: { type: String, ref: "Blog" },
+    user: { type: String, ref: "User", required: true }, // who write it post can know
+    categoryID: { type: String, required: true, ref: "Category" }, // category of post econom, criem or sport
+    blogID: { type: String, ref: "Blog" }, // home page can post include it
     comments: [{ type: String, ref: "Comment" }],
-    tags: [{ type: String, ref: "Tag" }],
+    tags: { type: [String] },
+    // coments on post can do
+    // tags: [{ type: String, ref: "Tag" }],
     publishedAt: { type: Date },
   },
   { timestamps: true }

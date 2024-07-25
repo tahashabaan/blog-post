@@ -9,16 +9,16 @@ import AuthRoute from "./Routes/authRoute";
 import AuthController from "./Controller/Auth/authController";
 import PostRoute from "./Routes/postRoute";
 import PostController from "./Controller/Post/PostController";
-import { IUser } from "./Interface/User/IUser";
-import { IPost } from "./Interface/Post/IPost";
+import { IUser } from "./Interface/IUser";
+import { IPost } from "./Interface/IPost";
 import CategoryRoute from "./Routes/CategoryRoute";
 import { CategoryController } from "./Controller/Category/CategoryController";
-import { ICategory } from "./Interface/Category/ICategory";
+import { ICategory } from "./Interface/ICategory";
 import CommentRoute from "./Routes/commentRoute";
 import CommentController from "./Controller/Comment/CommentController";
-import { IComment } from "./Interface/Comment/IComment";
+import { IComment } from "./Interface/IComment";
 import BlogController from "./Controller/Blog/BlogController";
-import { IBlog } from "./Interface/Blog/IBlog";
+import { IBlog } from "./Interface/IBlog";
 import BlogRoute from "./Routes/BlogRoute";
 
 const repositoryQuery = new queryRepository<IUser>(User);
@@ -55,6 +55,6 @@ const app = new App([
 
 const client = app.getApp();
 
-const server = createServer(client) 
+const server = createServer(client);
 
 export { server, client };

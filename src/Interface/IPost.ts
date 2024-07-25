@@ -1,4 +1,4 @@
-export interface IPost {
+export default interface IPost {
   categoryID: string;
   blogID: string;
   title: string;
@@ -10,4 +10,6 @@ export interface IPost {
   deletedAt?: Date;
   publishedAt?: Date;
   comments?: string[];
+  tags?: string[];
+  user: string;
 }

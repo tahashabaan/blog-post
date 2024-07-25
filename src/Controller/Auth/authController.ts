@@ -2,8 +2,8 @@ import { NextFunction, Request, Response } from "express";
 
 import ApiError from "@/Utils/ApiError";
 import queryRepository from "../../Repositery/queryRepository";
-import User from "@/models/user.entity";
-import { IUser } from "@/Interface/User/IUser";
+import User from "@/models/user";
+import { IUser } from "@/Interface/IUser";
 // import { Payload } from "@/Interface/IAuthInterface";
 // import AuthService from "@/Services/authService";
 import {

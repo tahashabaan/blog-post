@@ -1,5 +1,5 @@
 import { model, Schema } from "mongoose";
-import { IBlog } from "@/Interface/Blog/IBlog";
+import { IBlog } from "@/Interface";
 
 const BlogSchema = new Schema<IBlog>(
   {
@@ -7,6 +7,9 @@ const BlogSchema = new Schema<IBlog>(
     name: { type: String, required: true },
     description: { type: String },
     categories: [{ type: String, ref: "Category" }],
+    tags: [{ type: String, ref: "Tag" }],
+    image: { type: String },
+    user: { type: String, ref: "User" },
   },
   { timestamps: true }
 );

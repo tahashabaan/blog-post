@@ -3,4 +3,7 @@ export interface IBlog {
   name: string;
   description?: string;
   categories?: string[];
+  tags?: string[];
+  image?: string;
+  user?: string;
 }

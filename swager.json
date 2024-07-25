@@ -14,17 +14,90 @@
   "basepath": "/api/v1",
   "tags": [
     {
-      "name": "blog-post",
-      "description": "API"
+      "name": "posts",
+      "description": "Everything about your posts",
+      "externalDocs": {
+        "description": "Find out more",
+        "url": "http://swagger.io"
+      }
+    },
+    {
+      "name": "blogs",
+      "description": "Everything about your blogs",
+      "externalDocs": {
+        "description": "Find out more",
+        "url": "http://swagger.io"
+      }
+    },
+    {
+      "name": "tags",
+      "description": "Everything about your tags",
+      "externalDocs": {
+        "description": "Find out more",
+        "url": "http://swagger.io"
+      }
+    },
+    {
+      "name": "comments",
+      "description": "Everything about your comments",
+      "externalDocs": {
+        "description": "Find out more",
+        "url": "http://swagger.io"
+      }
+    },
+    {
+      "name": "posts",
+      "description": "Everything about your posts",
+      "externalDocs": {
+        "description": "Find out more",
+        "url": "http://swagger.io"
+      }
+    },
+    {
+      "name": "category",
+      "description": "Access to Petstore orders"
+    },
+    {
+      "name": "user",
+      "description": "Operations about user",
+      "externalDocs": {
+        "description": "Find out more about our store",
+        "url": "http://swagger.io"
+      }
     }
   ],
   "schemas": ["http", "https"],
-  "consumes": ["application/json"],
-  "produces": ["application/json"],
   "paths": {
     "/register": {
       "post": {
-        "description": "register a new user",
+        "description": "",
+        "summary": "register a new user",
+        "tags": ["user"],
+        "consumes": ["application/json"],
+        "produces": ["application/json", "application/xml"],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "body",
+            "description": "name to create user",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "email",
+            "in": "body",
+            "description": "email of user",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "body",
+            "description": "password of user",
+            "required": true,
+            "type": "string"
+          }
+        ],
         "responses": {
           "201": {
             "description": "sucess create a new user",
@@ -32,13 +105,13 @@
               "description": "create a new user",
               "application/json": {
                 "schema": {
-                  "type": "object",
                   "$ref": "#/definations/user"
                 }
               }
             }
           }
-        }
+        },
+        "security": {}
       }
     },
     "/login": {
@@ -77,12 +150,19 @@
               }
             }
           }
-        }
+        },
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "tags": ["user"]
       }
     },
     "/posts": {
       "get": {
         "description": "{}",
+        "tags": ["posts"],
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [],
         "responses": {
           "200": {
             "description": "{}",
@@ -90,7 +170,7 @@
               "description": "{}",
               "application/json": {
                 "schema": {
-                  "type": "",
+                  "type": "string",
                   "properties": {},
                   "$ref": "#/definations/post"
                 }
@@ -101,6 +181,10 @@
       },
       "post": {
         "description": "{}",
+        "tags": ["posts"],
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [],
         "responses": {
           "201": {
             "description": "{}",
@@ -120,19 +204,22 @@
 
     "/post/{id}": {
       "description": "get post by id",
-      "parameters": [
-        {
-          "name": "id",
-          "in": "path",
-          "description": "id of post",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
       "get": {
         "description": "get post by id",
+        "tags": ["posts"],
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id of post",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "status code",
@@ -147,10 +234,12 @@
               }
             }
           }
-        }
+        },
+        "security": {}
       },
       "put": {
         "description": "update post by id",
+        "tags": ["posts"],
         "responses": {
           "200": {
             "description": "status code",
@@ -164,10 +253,17 @@
               }
             }
           }
-        }
+        },
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [],
+        "security": {}
       },
       "delete": {
         "description": "delete post by id",
+        "tags": ["posts"],
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
         "responses": {
           "200": {
             "description": "status code",
@@ -181,7 +277,9 @@
               }
             }
           }
-        }
+        },
+        "parameters": [],
+        "security": {}
       }
     },
 
@@ -202,7 +300,11 @@
               }
             }
           }
-        }
+        },
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [],
+        "security": {}
       }
     },
 
@@ -220,6 +322,8 @@
             }
           }
         ],
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
         "responses": {
           "200": {
             "description": "status code",
@@ -234,10 +338,14 @@
               }
             }
           }
-        }
+        },
+        "security": {}
       },
       "put": {
         "description": "update user by id",
+        "parameters": [],
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
         "responses": {
           "200": {
             "description": "status code",
@@ -251,10 +359,14 @@
               }
             }
           }
-        }
+        },
+        "security": {}
       },
       "delete": {
         "description": "delete user by id",
+        "parameters": [],
+        "consumes": [],
+        "produces": [],
         "responses": {
           "200": {
             "description": "status code",
@@ -268,12 +380,17 @@
               }
             }
           }
-        }
+        },
+        "security": {}
       }
     },
     "/category": {
       "get": {
         "description": "get all categories",
+        "tags": ["category"],
+        "parameters": [],
+        "consumes": ["application/json"],
+        "produces": [],
         "responses": {
           "200": {
             "description": "status code",
@@ -288,10 +405,15 @@
               }
             }
           }
-        }
+        },
+        "security": {}
       },
       "post": {
         "description": "create a new category",
+        "tags": ["category"],
+        "parameters": [],
+        "consumes": [],
+        "produces": [],
         "responses": {
           "201": {
             "description": "status code",
@@ -305,12 +427,14 @@
               }
             }
           }
-        }
+        },
+        "security": {}
       }
     },
     "/category/{id}": {
       "get": {
         "description": "get category by id",
+        "tags": ["category"],
         "parameters": [
           {
             "name": "id",
@@ -322,6 +446,8 @@
             }
           }
         ],
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
         "responses": {
           "200": {
             "description": "status code",
@@ -336,10 +462,15 @@
               }
             }
           }
-        }
+        },
+        "security": {}
       },
       "put": {
         "description": "update category by id",
+        "tags": ["category"],
+        "parameters": [],
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
         "responses": {
           "200": {
             "description": "status code",
@@ -353,10 +484,16 @@
               }
             }
           }
-        }
+        },
+        "security": {}
       },
       "delete": {
         "description": "delete category by id",
+        "tags": ["category"],
+        "parameters": [],
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "security": {},
         "responses": {
           "200": {
             "description": "status code",
@@ -376,6 +513,21 @@
     "/blog": {
       "get": {
         "description": "get all blogs",
+        "tags": ["blogs"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id of category",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "security": {},
         "responses": {
           "200": {
             "description": "status code",
@@ -394,6 +546,21 @@
       },
       "post": {
         "description": "create a new blog",
+        "tags": ["blogs"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id of category",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "security": {},
         "responses": {
           "201": {
             "description": "status code",
@@ -413,6 +580,11 @@
     "/blog/{id}": {
       "get": {
         "description": "get blog by id",
+        "tags": ["blogs"],
+
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "security": {},
         "parameters": [
           {
             "name": "id",
@@ -442,6 +614,21 @@
       },
       "put": {
         "description": "update blog by id",
+        "tags": ["blogs"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id of category",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "security": {},
         "responses": {
           "200": {
             "description": "status code",
@@ -459,6 +646,21 @@
       },
       "delete": {
         "description": "delete blog by id",
+        "tags": ["blogs"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id of category",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "security": {},
         "responses": {
           "200": {
             "description": "status code",
@@ -479,6 +681,21 @@
     "/tag": {
       "get": {
         "description": "get all tags",
+        "tags": ["tags"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id of category",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "security": {},
         "responses": {
           "200": {
             "description": "status code",
@@ -497,6 +714,21 @@
       },
       "post": {
         "description": "create a new tag",
+        "tags": ["tags"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id of category",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "security": {},
         "responses": {
           "201": {
             "description": "status code",
@@ -517,6 +749,10 @@
     "/tag/{id}": {
       "get": {
         "description": "get tag by id",
+        "tags": ["tags"],
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "security": {},
         "parameters": [
           {
             "name": "id",
@@ -546,6 +782,21 @@
       },
       "put": {
         "description": "update tag by id",
+        "tags": ["tags"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id of category",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "security": {},
         "responses": {
           "200": {
             "description": "status code",
@@ -563,6 +814,21 @@
       },
       "delete": {
         "description": "delete tag by id",
+        "tags": ["tags"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id of category",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "security": {},
         "responses": {
           "200": {
             "description": "status code",
@@ -582,6 +848,21 @@
     "/comment": {
       "get": {
         "description": "get all comments",
+        "tags": ["comments"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id of category",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "security": {},
         "responses": {
           "200": {
             "description": "status code",
@@ -600,6 +881,21 @@
       },
       "post": {
         "description": "create a new comment",
+        "tags": ["comments"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id of category",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "security": {},
         "responses": {
           "201": {
             "description": "status code",
@@ -619,6 +915,10 @@
     "/comment/{id}": {
       "get": {
         "description": "get comment by id",
+        "tags": ["comments"],
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "security": {},
         "parameters": [
           {
             "name": "id",
@@ -648,6 +948,21 @@
       },
       "put": {
         "description": "update comment by id",
+        "tags": ["comments"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id of category",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "security": {},
         "responses": {
           "200": {
             "description": "status code",
@@ -665,6 +980,21 @@
       },
       "delete": {
         "description": "delete comment by id",
+        "tags": ["comments"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id of category",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "security": {},
         "responses": {
           "200": {
             "description": "status code",
@@ -682,10 +1012,26 @@
       }
     }
   },
-
+  "securityDefinitions": {
+    "api_key": {
+      "type": "apiKey",
+      "name": "api_key",
+      "in": "header"
+    },
+    "blogPost_auth": {
+      "type": "oauth2",
+      "authorizationUrl": "https://localhost/oauth/authorize",
+      "flow": "implicit",
+      "scopes": {
+        "read:posts": "read your posts",
+        "write:posts": "modify posts in your account"
+      }
+    }
+  },
   "definations": {
     "post": {
       "required": {},
+      "type": "object",
       "properties": {
         "id": {
           "type": "string"
@@ -727,6 +1073,7 @@
     },
     "user": {
       "required": {},
+      "type": "object",
       "properties": {
         "id": {
           "type": "string"
@@ -764,6 +1111,7 @@
       }
     },
     "comment": {
+      "type": "object",
       "required": {},
       "properties": {
         "id": {
@@ -784,6 +1132,7 @@
       }
     },
     "category": {
+      "type": "object",
       "required": {},
       "properties": {
         "id": {
@@ -798,6 +1147,7 @@
       }
     },
     "blog": {
+      "type": "object",
       "required": {},
       "properties": {
         "id": {
@@ -818,6 +1168,7 @@
       }
     },
     "tag": {
+      "type": "object",
       "required": {},
       "properties": {
         "id": {

@@ -1,6 +1,6 @@
 import { model, Schema } from "mongoose";
 
-import { ITag } from "@/Interface/Post/ITag";
+import { ITag } from "@/Interface";
 
 const TagSchema = new Schema<ITag>(
   {

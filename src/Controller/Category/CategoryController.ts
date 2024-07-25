@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 
 import queryRepository from "@/Repositery/queryRepository";
-import { ICategory } from "../../Interface/Category/ICategory";
+import { ICategory } from "../../Interface/ICategory";
 import ApiError from "@/Utils/ApiError";
 
 export class CategoryController {

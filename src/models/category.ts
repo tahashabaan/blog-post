@@ -1,10 +1,11 @@
 import { Schema, model, Document } from "mongoose";
-import { ICategory } from "../Interface/Category/ICategory";
+import { ICategory } from "@/Interface";
 
 const CategorySchema = new Schema<ICategory>(
   {
     // id: { type: String, required: true, unique: true },
-    title: { type: String, required: true },
+    name: { type: String, required: true },
+    image: { type: String },
     description: { type: String },
     blogID: { type: String, ref: "Blog" },
   },

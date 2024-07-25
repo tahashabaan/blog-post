@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 
-import { IBlog } from "@/Interface/Blog/IBlog";
+import { IBlog } from "@/Interface/IBlog";
 import queryRepository from "@/Repositery/queryRepository";
 import ApiError from "@/Utils/ApiError";
 

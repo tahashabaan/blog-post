@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from "express";
 
 import queryRepository from "@/Repositery/queryRepository";
 import ApiError from "@/Utils/ApiError";
-import { IPost } from "@/Interface/Post/IPost";
+import { IPost } from "@/Interface/IPost";
 
 export default class PostController {
   constructor(private readonly query: queryRepository<IPost>) {}
