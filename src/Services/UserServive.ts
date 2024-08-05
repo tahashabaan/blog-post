@@ -1,26 +1,51 @@
 import { inject, injectable } from "tsyringe";
 import UserRepository from "@/Repositery/Repository/UserRepository";
+import ApiError from "@/Utils/ApiError";
+import { CreateUserDTO, UpdateUserDTO } from "@/Dtos/userDto";
+import { IUser } from "@/Interface";
 
 @injectable()
 export default class UserService {
   constructor(@inject(UserRepository) private userRepository: UserRepository) {}
-  async createUser(data: any) {
-    return this.userRepository.create(data);
+  async getAllUsers() {
+    return await this.userRepository.findAll();
   }
 
-  async getUserByEmail(email: any) {
-    return this.userRepository.findByEmail(email);
+  async createUser(data: CreateUserDTO) {
+    try{
+
+      return this.userRepository.create(data);
+    } catch(err){
+       throw new ApiError(500, "internal server erro !"+ err.message);
+    }
   }
-  async getUser(id: string) {
-    return this.userRepository.findById(id);
+
+  async getUserByEmail(email: string) {
+
+    return await this.userRepository.findByEmail(email);
   }
-  async delUser(id: string) {
-    return this.userRepository.delete(id);
+  
+  async getUser(id: string): Promise<IUser|undefined> {
+    const user = await this.userRepository.findById(id);
+    if (!user) {
+      throw new Error('User not found');
+    }
+    return user;
   }
-  async updateUser(id: string, data: any) {
-    return this.userRepository.update(id, data);
+
+  async updateUser(id: string, data: UpdateUserDTO):Promise<IUser|undefined> {
+    const user = await this.userRepository.update(id, data);
+    if (!user) {
+      throw new Error('User not upadated');
+    }
+    return user;
   }
-  async getAllUsers() {
-    return this.userRepository.findAll();
+  
+  async delUser(id: string):Promise<IUser|undefined> {
+    const user = await this.userRepository.delete(id);
+    if (!user) {
+      throw new Error('User not deleted');
+    }
+    return user;
   }
 }

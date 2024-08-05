@@ -1,58 +1,159 @@
-import { NextFunction, Request, Response, Router } from "express";
+import { Router } from "express";
 
-import UserController from "@/Controller/User/userController";
+import UserController from "@/api/userApi";
+import { userValidate, createUserValidate, updateUserValidate, delUserValidate } from "@/Utils/validation/userValidate";
 
-export default class UserRoute {
-  private router: Router;
+/**
+ * @swagger
+ * tags:
+ *   name: Users
+ *   description: User management
+ */
 
-  constructor(private userController: UserController) {
-    // this.userController = new UserController();
-    this.router = Router();
-    this.initailRoutes();
-  }
+class UserRoute {
+    public router: Router;
+    private userControle: UserController;
 
-  private initailRoutes() {
-    this.router
-      .route("/users")
-      .get((req: Request, res: Response, next: NextFunction) =>
-        this.userController.readUsers(req, res, next)
-      )
-      .post((req: Request, res: Response, next: NextFunction) =>
-        this.userController.createUser(req, res, next)
-      );
-    this.router
-      .route("/user/:id")
-      .get((req: Request, res: Response, next: NextFunction) =>
-        this.userController.readUser(req, res, next)
-      )
-      .put((req: Request, res: Response, next: NextFunction) =>
-        this.userController.updateUser(req, res, next)
-      )
-      .delete((req: Request, res: Response, next: NextFunction) =>
-        this.userController.deleteUser(req, res, next)
-      );
-  }
+    constructor() {
+        this.router = Router();
+        this.userControle = new UserController();
+        this.initializeRoutes();
+    }
 
-  public getRouter() {
-    return this.router;
-  }
-  // public async createUserRoute() {
-  //   return this.router.post("/users");
-  // }
+    private initializeRoutes() {
+/**
+ * @swagger
+ * /users:
+ *   get:
+ *     summary: Get all users
+ *     tags: [Users]
+ *     responses:
+ *       200:
+ *         description: A list of users
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/User'
+ *       404:
+ *         description: Not found
+ *       500:
+ *         description: Internal server error
+ */
+        this.router.get("/users", this.userControle.getAllUsers.bind(this.userControle));
 
-  // public async getUsersRoute() {
-  //   return this.router.get("/users");
-  // }
+        /**
+         * @swagger
+         * /users:
+         *   post:
+         *     summary: Create a new user
+         *     tags: [Users]
+         *     requestBody:
+         *       required: true
+         *       content:
+         *         application/json:
+         *           schema:
+         *             $ref: '#/components/schemas/User'
+         *     responses:
+         *       201:
+         *         description: User created successfully
+         *         content:
+         *           application/json:
+         *             schema:
+         *               $ref: '#/components/schemas/User'
+         *       400:
+         *         description: Bad request
+         *       500:
+         *         description: Internal server error
+         */
+        this.router.post("/users",createUserValidate, this.userControle.createUser.bind(this.userControle));
 
-  // public async getUserRoute() {
-  //   return this.router.get("/user/:id");
-  // }
+        /**
+         * @swagger
+         * /users/{id}:
+         *   get:
+         *     summary: Get a user by ID
+         *     tags: [Users]
+         *     parameters:
+         *       - in: path
+         *         name: id
+         *         required: true
+         *         schema:
+         *           type: string
+         *         description: The user ID
+         *     responses:
+         *       200:
+         *         description: User found
+         *         content:
+         *           application/json:
+         *             schema:
+         *               $ref: '#/components/schemas/User'
+         *       404:
+         *         description: User not found
+         *       500:
+         *         description: Internal server error
+         */
+        this.router.get("/users/:id",userValidate, this.userControle.getUserById.bind(this.userControle));
 
-  // public async updateUserRoute() {
-  //   return this.router.put("/user/:id");
-  // }
+        /**
+         * @swagger
+         * /users/{id}:
+         *   put:
+         *     summary: Update a user by ID
+         *     tags: [Users]
+         *     parameters:
+         *       - in: path
+         *         name: id
+         *         required: true
+         *         schema:
+         *           type: string
+         *         description: The user ID
+         *     requestBody:
+         *       required: true
+         *       content:
+         *         application/json:
+         *           schema:
+         *             $ref: '#/components/schemas/User'
+         *     responses:
+         *       200:
+         *         description: User updated successfully
+         *         content:
+         *           application/json:
+         *             schema:
+         *               $ref: '#/components/schemas/User'
+         *       400:
+         *         description: Bad request
+         *       404:
+         *         description: User not found
+         *       500:
+         *         description: Internal server error
+         */
+        this.router.put("/users/:id",updateUserValidate, this.userControle.updateUser.bind(this.userControle));
 
-  // public async deleteUserRoute() {
-  //   return this.router.delete("/user/:id");
-  // }
+        /**
+         * @swagger
+         * /users/{id}:
+         *   delete:
+         *     summary: Delete a user by ID
+         *     tags: [Users]
+         *     parameters:
+         *       - in: path
+         *         name: id
+         *         required: true
+         *         schema:
+         *           type: string
+         *         description: The user ID
+         *     responses:
+         *       200:
+         *         description: User deleted successfully
+         *       404:
+         *         description: User not found
+         *       500:
+         *         description: Internal server error
+         */
+        this.router.delete("/users/:id",delUserValidate,  this.userControle.delUser.bind(this.userControle));
+    }
 }
+
+export default UserRoute;

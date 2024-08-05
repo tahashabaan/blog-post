@@ -2,6 +2,7 @@ import { container} from "tsyringe";
 import { Request, Response, NextFunction } from "express";
 import UserService from "@/Services/UserServive";
 import ApiError from "@/Utils/ApiError";
+import { CreateUserDTO, UpdateUserDTO } from "@/Dtos/userDto";
 
 // @injectable()
 export default class UserAPI {
@@ -10,12 +11,12 @@ export default class UserAPI {
     this.userService = container.resolve(UserService);
   }
 
-  async getUsers(req: Request, res: Response, next: NextFunction) {
+  async getAllUsers(req: Request, res: Response, next: NextFunction) {
     try {
-      const users = this.userService.getAllUsers();
-      res.status(200).json(users);
+      const users = await this.userService.getAllUsers();
+      res.status(200).json({msg:"sucessfuly return users", users});
     } catch (err) {
-      next(new ApiError(400, "something went wrong! " + err.message));
+      next(new ApiError(500,  'Internal server error' + err.message));
     }
   }
 
@@ -24,38 +25,47 @@ export default class UserAPI {
   async getUserById(req: Request, res: Response, next: NextFunction) {
     try {
       const { id } = req.params;
-      const user = this.userService.getUser(id);
+      const user = await this.userService.getUser(id);
       res.status(200).json(user);
     } catch (err) {
-      next(new ApiError(400, "something went wrong! " + err.message));
+      next(new ApiError(500, 'Internal server error'  + err.message));
     }
   }
 
   async createUser(req: Request, res: Response, next: NextFunction) {
     try {
-      const user = this.userService.createUser(req.body);
-      res.status(201).json(user);
+      let data:CreateUserDTO = req.body;
+      const user = await this.userService.createUser(data);
+      res.status(201).json({msg:"created successfully"});
     } catch (err) {
-      next(new ApiError(400, "something went wrong! " + err.message));
+      next(new ApiError(500, 'Internal server error'  + err.message));
     }
   }
+
   async updateUser(req: Request, res: Response, next: NextFunction) {
     try {
       const { id } = req.params;
-      const user = this.userService.updateUser(id, req.body);
-      res.status(200).json(user);
+      let data:UpdateUserDTO = req.body;
+      const user = await this.userService.updateUser(id, data);
+      res.status(200).json({mesg:"update user sucessfully"});
     } catch (err) {
-      next(new ApiError(400, "something went wrong! " + err.message));
+      next(new ApiError(500, 'Internal server error'  + err.message));
     }
   }
 
   async delUser(req: Request, res: Response, next: NextFunction) {
     try {
       const { id } = req.params;
-      const user = this.userService.delUser(id);
-      res.status(204).send();
+        const result = await this.userService.delUser(id);
+
+        if (result) {
+            return res.status(204).send(); // No Content
+        } else {
+            return res.status(404).json({ error: 'User not found' });
+        }
     } catch (err) {
-      next(new ApiError(400, "something went wrong! " + err.message));
+      next(new ApiError(500, 'Internal server error'  + err.message));
     }
   }
+
 }

@@ -11,7 +11,7 @@ export default class PostAPI {
 
   async getPosts(req: Request, res: Response, next: NextFunction) {
     try {
-      const posts = this.postService.getPosts();
+      const posts =await this.postService.getPosts();
       res.status(201).json(posts);
     } catch (err) {
       next(new ApiError(400, "something went wrong! " + err.message));
@@ -21,7 +21,7 @@ export default class PostAPI {
   async getPostById(req: Request, res: Response, next: NextFunction) {
     try {
       const { id } = req.params;
-      const post = this.postService.getPostById(id);
+      const post = await this.postService.getPostById(id);
       res.status(200).json(post);
     } catch (err) {
       next(new ApiError(400, "something went wrong! " + err.message));
@@ -30,7 +30,7 @@ export default class PostAPI {
 
   async createPost(req: Request, res: Response, next: NextFunction) {
     try {
-      const post = this.postService.createPost(req.body);
+      const post =await this.postService.createPost(req.body);
       res.status(201).json(post);
     } catch (err) {
       next(new ApiError(400, "something went wrong! " + err.message));
@@ -40,7 +40,7 @@ export default class PostAPI {
   async updatePost(req: Request, res: Response, next: NextFunction) {
     try {
       const { id } = req.params;
-      const post = this.postService.updatePost(id, req.body);
+      const post = await this.postService.updatePost(id, req.body);
       res.status(200).json(post);
     } catch (err) {
       next(new ApiError(400, "something went wrong! " + err.message));
@@ -50,7 +50,7 @@ export default class PostAPI {
   async delPost(req: Request, res: Response, next: NextFunction) {
     try {
       const { id } = req.params;
-      const post = this.postService.deletePost(id);
+      const post = await this.postService.deletePost(id);
       res.status(204).send();
     } catch (err) {
       next(new ApiError(400, "something went wrong! " + err.message));

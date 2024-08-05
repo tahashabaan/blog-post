@@ -1,6 +1,9 @@
 import { inject, injectable } from "tsyringe";
 import PostRepository from "@/Repositery/Repository/PostRepository";
+
+
 @injectable()
+
 export default class postService {
   constructor(@inject(PostRepository) private postRepository: PostRepository) {}
   async createPost(data: any) {

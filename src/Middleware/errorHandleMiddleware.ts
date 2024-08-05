@@ -5,6 +5,8 @@ interface err {
   message: string;
 }
 
+
+
 export default (err: err, req: Request, res: Response, next: NextFunction) => {
   let { statusCode, message } = err;
   statusCode = statusCode || 404;
@@ -16,3 +18,13 @@ export default (err: err, req: Request, res: Response, next: NextFunction) => {
     message,
   });
 };
+
+
+/**
+ * 
+ * how handle middleaware to error 
+ * app.use('*', (err, reg, res, next)=>{
+ *     const {status, message}= err;
+ * 
+ * })
+ */

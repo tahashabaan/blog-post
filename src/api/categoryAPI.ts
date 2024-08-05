@@ -12,7 +12,7 @@ export default class CategoryAPI {
 
   async getCategories(req: Request, res: Response, next: NextFunction) {
     try {
-      const categories = this.categoryService.getCategories();
+      const categories = await this.categoryService.getCategories();
       res.status(201).json(categories);
     } catch (err) {
       next(new ApiError(400, "something went wrong! " + err.message));
@@ -22,7 +22,7 @@ export default class CategoryAPI {
   async getCategoryById(req: Request, res: Response, next: NextFunction) {
     try {
       const { id } = req.params;
-      const category = this.categoryService.getCategoryById(id);
+      const category = await this.categoryService.getCategoryById(id);
       res.status(200).json(category);
     } catch (err) {
       next(new ApiError(400, "something went wrong! " + err.message));
@@ -31,7 +31,7 @@ export default class CategoryAPI {
 
   async createCategory(req: Request, res: Response, next: NextFunction) {
     try {
-      const category = this.categoryService.createCategory(req.body);
+      const category = await this.categoryService.createCategory(req.body);
       res.status(201).json(category);
     } catch (err) {
       next(new ApiError(400, "something went wrong! " + err.message));
@@ -41,7 +41,7 @@ export default class CategoryAPI {
   async updateCategory(req: Request, res: Response, next: NextFunction) {
     try {
       const { id } = req.params;
-      const category = this.categoryService.updateCategory(id, req.body);
+      const category =await this.categoryService.updateCategory(id, req.body);
       res.status(200).json(category);
     } catch (err) {
       next(new ApiError(400, "something went wrong! " + err.message));
@@ -51,7 +51,7 @@ export default class CategoryAPI {
   async delCategory(req: Request, res: Response, next: NextFunction) {
     try {
       const { id } = req.params;
-      const category = this.categoryService.deleteCategory(id);
+      const category = await this.categoryService.deleteCategory(id);
       res.status(204).send();
     } catch (err) {
       next(new ApiError(400, "something went wrong! " + err.message));

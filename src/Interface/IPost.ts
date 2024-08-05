@@ -1,9 +1,9 @@
 export default interface IPost {
-  categoryID: string;
-  blogID: string;
   title: string;
   content: string;
   authorID: string;
+  categoryID: string;
+  blogID?: string;
   summary?: string;
   statusPost?: string;
   updatedAt?: Date;

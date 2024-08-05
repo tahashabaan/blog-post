@@ -1,18 +1,24 @@
 // repository layer enable to work with database directly
-import { CreateUserDTO, UserDTO } from "@/Dtos/userDto";
+import { CreateUserDTO, UpdateUserDTO, UserDTO } from "@/Dtos/userDto";
 import { User } from "@/models/";
+import ApiError from "@/Utils/ApiError";
 
 import { injectable } from "tsyringe";
 // import { User } from "../models/User";
 
 @injectable()
 export default class UserRepository {
-  public async create(data: any) {
-    const user = new User(data);
-    return user.save();
+  public async create(data: CreateUserDTO) {
+    try{
+      const user = new User(data);
+      return user.save();
+    } catch(err){
+      throw new ApiError(400, err.message )
+    }
   }
 
   public async findAll() {
+    
     return User.find().exec();
   }
 
@@ -24,11 +30,11 @@ export default class UserRepository {
     return User.findOne({ email }).exec();
   }
 
-  public async update(id: string, data: any) {
+  public async update(id: string, data: UpdateUserDTO) {
     return User.findByIdAndUpdate(id, data, { new: true }).exec();
   }
 
   public async delete(id: string) {
-    return User.findByIdAndDelete(id).exec();
+    return await User.findByIdAndDelete(id).exec();
   }
 }

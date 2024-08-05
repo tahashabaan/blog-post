@@ -11,7 +11,7 @@ export default class BlogAPI {
 
   async getBlogs(req: Request, res: Response, next: NextFunction) {
     try {
-      const blogs = this.bloggingService.getBlogs();
+      const blogs = await this.bloggingService.getBlogs();
       res.status(201).json(blogs);
     } catch (err) {
       next(new ApiError(400, "something went wrong! " + err.message));
@@ -21,7 +21,7 @@ export default class BlogAPI {
   async getBlogById(req: Request, res: Response, next: NextFunction) {
     try {
       const { id } = req.params;
-      const blog = this.bloggingService.getBlogById(id);
+      const blog = await this.bloggingService.getBlogById(id);
       res.status(200).json(blog);
     } catch (err) {
       next(new ApiError(400, "something went wrong! " + err.message));
@@ -30,7 +30,7 @@ export default class BlogAPI {
 
   async createBlog(req: Request, res: Response, next: NextFunction) {
     try {
-      const blog = this.bloggingService.createBlog(req.body);
+      const blog = await this.bloggingService.createBlog(req.body);
       res.status(201).json(blog);
     } catch (err) {
       next(new ApiError(400, "something went wrong! " + err.message));
@@ -40,7 +40,7 @@ export default class BlogAPI {
   async updateBlog(req: Request, res: Response, next: NextFunction) {
     try {
       const { id } = req.params;
-      const blog = this.bloggingService.updateBlog(id, req.body);
+      const blog = await this.bloggingService.updateBlog(id, req.body);
       res.status(200).json(blog);
     } catch (err) {
       next(new ApiError(400, "something went wrong! " + err.message));
@@ -50,7 +50,7 @@ export default class BlogAPI {
   async delBlog(req: Request, res: Response, next: NextFunction) {
     try {
       const { id } = req.params;
-      const blog = this.bloggingService.deleteBlog(id);
+      const blog = await this.bloggingService.deleteBlog(id);
       res.status(204).send();
     } catch (err) {
       next(new ApiError(400, "something went wrong! " + err.message));

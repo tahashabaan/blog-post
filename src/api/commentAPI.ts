@@ -11,7 +11,7 @@ export default class CommentAPI {
 
   async getComments(req: Request, res: Response, next: NextFunction) {
     try {
-      const comments = this.commentService.getComments();
+      const comments = await this.commentService.getComments();
       res.status(201).json(comments);
     } catch (err) {
       next(new ApiError(400, "something went wrong! " + err.message));
@@ -21,7 +21,7 @@ export default class CommentAPI {
   async getCommentById(req: Request, res: Response, next: NextFunction) {
     try {
       const { id } = req.params;
-      const comment = this.commentService.getCommentById(id);
+      const comment = await this.commentService.getCommentById(id);
       res.status(200).json(comment);
     } catch (err) {
       next(new ApiError(400, "something went wrong! " + err.message));
@@ -30,7 +30,7 @@ export default class CommentAPI {
 
   async createComment(req: Request, res: Response, next: NextFunction) {
     try {
-      const comment = this.commentService.createComment(req.body);
+      const comment =await this.commentService.createComment(req.body);
       res.status(201).json(comment);
     } catch (err) {
       next(new ApiError(400, "something went wrong! " + err.message));
@@ -40,7 +40,7 @@ export default class CommentAPI {
   async updateComment(req: Request, res: Response, next: NextFunction) {
     try {
       const { id } = req.params;
-      const comment = this.commentService.updateComment(id, req.body);
+      const comment = await this.commentService.updateComment(id, req.body);
       res.status(200).json(comment);
     } catch (err) {
       next(new ApiError(400, "something went wrong! " + err.message));
@@ -50,7 +50,7 @@ export default class CommentAPI {
   async delComment(req: Request, res: Response, next: NextFunction) {
     try {
       const { id } = req.params;
-      const comment = this.commentService.deleteComment(id);
+      const comment =await this.commentService.deleteComment(id);
       res.status(204).send();
     } catch (err) {
       next(new ApiError(400, "something went wrong! " + err.message));
