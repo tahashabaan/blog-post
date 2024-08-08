@@ -18,9 +18,12 @@ git clone `https://github.com/tahashabaan/blog-post.git`
 npm install
 
 # Set up environment variables:
-# Create a .env file in the root directory
-# Define the following variables:
- ```PORT=3000
+ 
+  
+#### Create a .env file in the root directory
+###### Define the following variables:
+ ```
+    PORT=3000
     MONGODB_URI=mongodb://localhost:27017/blog
     JWT_SECRET=yoursecretkey
 ```
